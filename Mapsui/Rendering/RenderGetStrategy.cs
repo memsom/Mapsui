@@ -19,7 +19,7 @@ namespace Mapsui.Rendering
         }
 
         public static void GetRecursive(IDictionary<TileIndex, IFeature> resultTiles, ITileSchema schema,
-            ITileCache<Feature> cache, Extent extent, string levelId)
+            ITileCache<Feature> cache, Extent extent, int levelId)
         {
             // to improve performance, convert the resolutions to a list so they can be walked up by
             // simply decrementing an index when the level index needs to change
@@ -35,7 +35,7 @@ namespace Mapsui.Rendering
         }
 
         private static void GetRecursive(IDictionary<TileIndex, IFeature> resultTiles, ITileSchema schema,
-            ITileCache<Feature> cache, Extent extent, IList<KeyValuePair<string, Resolution>> resolutions, int resolutionIndex)
+            ITileCache<Feature> cache, Extent extent, IList<KeyValuePair<int, Resolution>> resolutions, int resolutionIndex)
         {
             if (resolutionIndex < 0 || resolutionIndex >= resolutions.Count)
                 return;
