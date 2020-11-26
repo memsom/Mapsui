@@ -264,6 +264,7 @@ namespace Mapsui.Rendering.Xaml
                 return;
             }
 
+#pragma warning disable CS0618 // Type or member is obsolete
             _formattedText = new FormattedText(
               Text ?? "",
               CultureInfo.CurrentUICulture,
@@ -271,6 +272,7 @@ namespace Mapsui.Rendering.Xaml
               new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
               FontSize,
               Brushes.Black);
+#pragma warning restore CS0618 // Type or member is obsolete
 
             UpdateFormattedText();
         }

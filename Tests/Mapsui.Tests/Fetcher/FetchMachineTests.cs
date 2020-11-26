@@ -22,7 +22,7 @@ namespace Mapsui.Tests.Fetcher
             var cache = new MemoryCache<Feature>();
             var fetchDispatcher = new TileFetchDispatcher(cache) {TileSource = tileSource};
             var tileMachine = new FetchMachine(fetchDispatcher);
-            var level = "4";
+            var level = 4;
             var expextedTiles = 256;
 
             // Act
@@ -47,7 +47,7 @@ namespace Mapsui.Tests.Fetcher
             var cache = new MemoryCache<Feature>();
             var fetchDispatcher = new TileFetchDispatcher(cache) {TileSource = tileSource};
             var tileMachine = new FetchMachine(fetchDispatcher);
-            var level = "3";
+            var level = 3;
             var tilesInLevel = 64;
 
             // Act
@@ -73,7 +73,7 @@ namespace Mapsui.Tests.Fetcher
             var cache = new MemoryCache<Feature>();
             var fetchDispatcher = new TileFetchDispatcher(cache) {TileSource = tileSource};
             var tileMachine = new FetchMachine(fetchDispatcher);
-            var level = "3";
+            var level = 3;
             var tilesInLevel = 64;
 
             // Act
@@ -105,7 +105,7 @@ namespace Mapsui.Tests.Fetcher
             // Act
             for (int i = 0; i < numberOfRestarts; i++)
             {
-                fetchDispatcher.SetViewport(tileSchema.Extent.ToBoundingBox(), tileSchema.Resolutions["3"].UnitsPerPixel);
+                fetchDispatcher.SetViewport(tileSchema.Extent.ToBoundingBox(), tileSchema.Resolutions[3].UnitsPerPixel);
                 tileMachine.Start();
                 while (fetchDispatcher.Busy) { }
             }

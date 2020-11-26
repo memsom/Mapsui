@@ -12,13 +12,13 @@ using System.Threading.Tasks;
 
 namespace Mapsui.Samples.Forms
 {
-	[XamlCompilation(XamlCompilationOptions.Compile)]
-	public partial class MapPage : ContentPage
-	{
+    [XamlCompilation(XamlCompilationOptions.Compile)]
+    public partial class MapPage : ContentPage
+    {
         public Func<MapView, MapClickedEventArgs, bool> Clicker { get; set; }
 
         public MapPage ()
-		{
+        {
             InitializeComponent();
         }
 

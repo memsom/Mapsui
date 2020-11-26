@@ -1,7 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <Import Project="../Mapsui.Common.props" />
   <PropertyGroup>
-    <TargetFramework>net461</TargetFramework>
+    <TargetFramework>net48</TargetFramework>
+    <AssemblyName>Mapsui.UI.Wpf</AssemblyName>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DefineConstants>TRACE;DEBUG;NET46;__WPF__</DefineConstants>
@@ -15,9 +16,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="BruTile" Version="2.0.2" />
-    <PackageReference Include="SkiaSharp" Version="1.60.3" />
-    <PackageReference Include="SkiaSharp.Views" Version="1.60.3" />
+    <PackageReference Include="BruTile" Version="3.0.0" />
+    <PackageReference Include="SkiaSharp" Version="2.80.2" />
+    <PackageReference Include="SkiaSharp.Views" Version="2.80.2" />
   </ItemGroup>
 
   <ItemGroup>
