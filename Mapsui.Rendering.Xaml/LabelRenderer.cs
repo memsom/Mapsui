@@ -63,6 +63,7 @@ namespace Mapsui.Rendering.Xaml
         private static void DetermineTextWidthAndHeightWpf(out double width, out double height, LabelStyle style, string text)
         {
             // in WPF the width and height is not calculated at this point. So we use FormattedText
+#pragma warning disable CS0618 // Type or member is obsolete
             var formattedText = new FormattedText(
                 text,
                 CultureInfo.InvariantCulture,
@@ -70,6 +71,7 @@ namespace Mapsui.Rendering.Xaml
                 new Typeface(style.Font.FontFamily),
                 style.Font.Size,
                 new SolidColorBrush(style.ForeColor.ToXaml()));
+#pragma warning restore CS0618 // Type or member is obsolete
 
             width = formattedText.Width;
             height = formattedText.Height;

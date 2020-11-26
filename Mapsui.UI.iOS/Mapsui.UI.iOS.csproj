@@ -12,6 +12,8 @@
     <RootNamespace>Mapsui.UI.iOS</RootNamespace>
     <IPhoneResourcePrefix>Resources</IPhoneResourcePrefix>
     <AssemblyName>Mapsui.UI.iOS</AssemblyName>
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -33,14 +35,6 @@
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SkiaSharp, Version=2.80.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <HintPath>..\packages\SkiaSharp.2.80.2\lib\xamarinios1.0\SkiaSharp.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="SkiaSharp.Views.iOS, Version=2.80.0.0, Culture=neutral, PublicKeyToken=0738eb9f132ed756">
-      <HintPath>..\packages\SkiaSharp.Views.2.80.2\lib\xamarinios1.0\SkiaSharp.Views.iOS.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Xml" />
     <Reference Include="System.Core" />
@@ -70,15 +64,12 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="app.config" />
-    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <PackageReference Include="SkiaSharp.Views">
+      <Version>2.80.2</Version>
+    </PackageReference>
   </ItemGroup>
   <Import Project="..\Mapsui.UI.Shared\Mapsui.UI.Shared.projitems" Label="Shared" />
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\iOS\Xamarin.iOS.CSharp.targets" />
-  <Import Project="..\packages\SkiaSharp.2.80.2\build\xamarinios1.0\SkiaSharp.targets" Condition="Exists('..\packages\SkiaSharp.2.80.2\build\xamarinios1.0\SkiaSharp.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105.The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\packages\SkiaSharp.2.80.2\build\xamarinios1.0\SkiaSharp.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\SkiaSharp.2.80.2\build\xamarinios1.0\SkiaSharp.targets'))" />
-  </Target>
 </Project>
