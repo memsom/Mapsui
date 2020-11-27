@@ -271,8 +271,8 @@ namespace Mapsui.Rendering.Xaml
               FlowDirection,
               new Typeface(FontFamily, FontStyle, FontWeight, FontStretch),
               FontSize,
-              Brushes.Black);
-#pragma warning restore CS0618 // Type or member is obsolete
+              Brushes.Black,
+              1);
 
             UpdateFormattedText();
         }

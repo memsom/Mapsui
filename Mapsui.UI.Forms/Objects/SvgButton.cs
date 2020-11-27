@@ -2,6 +2,7 @@
 using System.IO;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
+using SKSvg = Svg.Skia.SKSvg;
 using Xamarin.Forms;
 
 namespace Mapsui.UI.Forms
@@ -10,6 +11,7 @@ namespace Mapsui.UI.Forms
     {
         private Command _command;
         private SKPicture _picture;
+        private double _rotation = 0;
 
         public Command Command
         {
@@ -36,7 +38,20 @@ namespace Mapsui.UI.Forms
             }
         }
 
-        public SvgButton(Stream stream) : this(new SkiaSharp.Extended.Svg.SKSvg().Load(stream))
+        new public double Rotation
+        {
+            get => _rotation;
+            set
+            {
+                if (_rotation != value)
+                {
+                    _rotation = value;
+                    InvalidateSurface();
+                }
+            }
+        }
+
+        public SvgButton(Stream stream) : this(new SKSvg().Load(stream))
         {
         }
 
@@ -61,10 +76,13 @@ namespace Mapsui.UI.Forms
             // get the scale to fill the screen
             float scale = (float)(canvasMin / svgMax);
 
-            // create a scale matrix
-            var matrix = SKMatrix.MakeScale(scale, scale);
+            // Rotate picture
+            var matrix = SKMatrix.CreateRotationDegrees((float)_rotation, _picture.CullRect.Width / 2f, _picture.CullRect.Height / 2f);
 
-            e.Surface.Canvas.DrawPicture(_picture, ref matrix);
+            // create a scale matrix
+            matrix = matrix.PostConcat(SKMatrix.CreateScale(scale, scale));
+
+            e.Surface.Canvas.DrawPicture(_picture, ref matrix, new SKPaint() { IsAntialias = true });
         }
     }
 }
