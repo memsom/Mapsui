@@ -95,9 +95,6 @@
       <Project>{508ae811-a03a-4138-8ccc-abde03c67010}</Project>
       <Name>Mapsui.Samples.Common</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Mapsui.Samples.Forms.Shared\Mapsui.Samples.Forms.csproj">
-      <Project>{1a036bee-7970-486f-8490-874de004115c}</Project>
-      <Name>Mapsui.Samples.Forms</Name>
     <ProjectReference Include="..\Mapsui.Samples.Forms.Shared\Mapsui.Samples.Forms.Shared.csproj">
       <Project>{c008562a-ed14-4ef0-bad6-b7967ef9a9f3}</Project>
       <Name>Mapsui.Samples.Forms.Shared</Name>
@@ -118,7 +115,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.NETCore.Platforms">
       <Version>5.0.0</Version>
-      <Version>3.1.0</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="Microsoft.Win32.Primitives">
       <Version>4.3.0</Version>
@@ -242,7 +239,7 @@
     </PackageReference>
     <PackageReference Include="System.Runtime.CompilerServices.Unsafe">
       <Version>5.0.0</Version>
-      <Version>4.7.1</Version>
+      <Version>5.0.0</Version>
     </PackageReference>
     <PackageReference Include="System.Runtime.Extensions">
       <Version>4.3.1</Version>
@@ -317,9 +314,5 @@
       <UserProperties TriggeredFromHotReload="False" />
     </VisualStudio>
   </ProjectExtensions>
-    <PackageReference Include="Xamarin.Forms">
-      <Version>4.6.0.1073</Version>
-    </PackageReference>
-  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
 </Project>
