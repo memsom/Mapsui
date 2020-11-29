@@ -16,6 +16,7 @@
 // Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA 
 
 using System;
+using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -73,7 +74,7 @@ namespace Mapsui
         /// <summary>
         /// List of Widgets belonging to map
         /// </summary>
-        public List<IWidget> Widgets { get; } = new List<IWidget>();
+        public ConcurrentQueue<IWidget> Widgets { get; } = new ConcurrentQueue<IWidget>();
 
         /// <summary>
         /// Limit the extent to which the user can navigate
@@ -212,11 +213,11 @@ namespace Mapsui
             }
         }
 
-        public void RefreshData(BoundingBox extent, double resolution, bool majorChange)
+        public void RefreshData(BoundingBox extent, double resolution, ChangeType changeType)
         {
             foreach (var layer in _layers.ToList())
             {
-                layer.RefreshData(extent, resolution, majorChange);
+                layer.RefreshData(extent, resolution, changeType);
             }
         }
 
@@ -309,7 +310,8 @@ namespace Mapsui
 
         public IEnumerable<IWidget> GetWidgetsOfMapAndLayers()
         {
-            return Widgets.Concat(Layers.Select(l => l.Attribution)).Where(w => w != null).ToList();
+            return Widgets.Concat(Layers.Where(l => l.Enabled).Select(l => l.Attribution))
+                .Where(a => a != null && a.Enabled).ToList();
         }
     }
 }

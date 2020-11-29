@@ -10,7 +10,7 @@ using Brush = Mapsui.Styles.Brush;
 
 namespace Mapsui.UI.Forms
 {
-    public sealed class Circle : Drawable
+    public class Circle : Drawable
     {
         public static readonly BindableProperty CenterProperty = BindableProperty.Create(nameof(Center), typeof(Position), typeof(Circle), default(Position));
         public static readonly BindableProperty RadiusProperty = BindableProperty.Create(nameof(Radius), typeof(Distance), typeof(Circle), Distance.FromMeters(1));
