@@ -18,20 +18,6 @@ namespace Mapsui.UI.Forms
     /// </summary>
     public partial class MapControl : SKGLView, IMapControl, IDisposable
     {
-        class TouchEvent
-        {
-            public long Id { get; }
-            public Geometries.Point Location { get; }
-            public long Tick { get; }
-
-            public TouchEvent(long id, Geometries.Point screenPosition, long tick)
-            {
-                Id = id;
-                Location = screenPosition;
-                Tick = tick;
-            }
-        }
-
         // See http://grepcode.com/file/repository.grepcode.com/java/ext/com.google.android/android/4.0.4_r2.1/android/view/ViewConfiguration.java#ViewConfiguration.0PRESSED_STATE_DURATION for values
         private const int shortTap = 125;
         private const int shortClick = 250;

@@ -2,7 +2,16 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
+    <LangVersion>8</LangVersion>
   </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Images\Marker.svg" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Images\Marker.svg" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="Xam.Plugin.Geolocator" Version="4.5.0.6" />
@@ -11,6 +20,10 @@
   <ItemGroup>
     <ProjectReference Include="..\..\..\Mapsui.UI.Forms\Mapsui.UI.Forms.csproj" />
     <ProjectReference Include="..\..\Mapsui.Samples.Common\Mapsui.Samples.Common.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Folder Include="Extensions\" />
   </ItemGroup>
 
 </Project>

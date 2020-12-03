@@ -5,12 +5,12 @@
              x:Class="Mapsui.Samples.Forms.MapPage">
     <ContentPage.Content>
         <StackLayout>
-          <mapsui:MapView x:Name="mapView"
-            IsVisible="False"
-		    VerticalOptions="FillAndExpand"
-            HorizontalOptions="Fill"
-		    BackgroundColor="Gray" 
-		    Margin="10" />
+            <mapsui:MapViewEx x:Name="mapView"
+                IsVisible="False"
+		        VerticalOptions="FillAndExpand"
+                HorizontalOptions="Fill"
+		        BackgroundColor="Gray" 
+		        Margin="10" />
           <Label x:Name="info" 
             HorizontalOptions="CenterAndExpand"
             Text="unknown" />

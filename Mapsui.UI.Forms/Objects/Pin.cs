@@ -1,23 +1,23 @@
-﻿using System.IO;
-using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using Mapsui.Providers;
+﻿using Mapsui.Providers;
 using Mapsui.Rendering.Skia;
 using Mapsui.Styles;
 using Mapsui.UI.Objects;
 using SkiaSharp;
 using SkiaSharp.Views.Forms;
-using SKSvg = Svg.Skia.SKSvg;
+using System.IO;
+using System.Linq;
+using System.Runtime.CompilerServices;
+using System.Text;
 using Xamarin.Forms;
+using SKSvg = Svg.Skia.SKSvg;
 
 namespace Mapsui.UI.Forms
 {
-    public class Pin : BindableObject, IFeatureProvider
+    public class Pin : BindableObject, IFeatureProvider, ISymbol, ICalloutSymbol
     {
         private int _bitmapId = -1;
         private byte[] _bitmapData;
-        private MapView _mapView;
+        private IMapView _mapView;
 
         public static readonly BindableProperty TypeProperty = BindableProperty.Create(nameof(Type), typeof(PinType), typeof(Pin), default(PinType));
         public static readonly BindableProperty ColorProperty = BindableProperty.Create(nameof(Color), typeof(Xamarin.Forms.Color), typeof(Pin), SKColors.Red.ToFormsColor());
@@ -41,7 +41,7 @@ namespace Mapsui.UI.Forms
         /// Initializes a new instance of the <see cref="T:Mapsui.UI.Forms.Pin"/> class
         /// </summary>
         /// <param name="mapView">MapView to which this pin belongs</param>
-        public Pin(MapView mapView)
+        public Pin(IMapView mapView)
         {
             _mapView = mapView;
 
@@ -59,12 +59,12 @@ namespace Mapsui.UI.Forms
         /// <summary>
         /// Internal MapView for refreshing of screen
         /// </summary>
-        internal MapView MapView
-        { 
-            get 
-            { 
-                return _mapView; 
-            } 
+        IMapView ISymbol.MapView
+        {
+            get
+            {
+                return _mapView;
+            }
             set
             {
                 if (_mapView != value)
@@ -73,7 +73,7 @@ namespace Mapsui.UI.Forms
                     {
                         _mapView?.RemoveCallout(_callout);
                     }
-                    
+
                     Feature = null;
                     _mapView = value;
 
@@ -274,7 +274,7 @@ namespace Mapsui.UI.Forms
                         _callout.Subtitle = Address;
                     }
                 }
-                
+
                 return _callout;
             }
             internal set
@@ -364,7 +364,8 @@ namespace Mapsui.UI.Forms
                     if (Feature != null)
                     {
                         Feature.Geometry = Position.ToMapsui();
-                        _callout.Feature.Geometry = Feature.Geometry;
+                        // otherwise the callout can be null...
+                        Callout.Feature.Geometry = Feature.Geometry;
                     }
                     break;
                 case nameof(Label):
