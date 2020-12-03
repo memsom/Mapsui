@@ -73,7 +73,7 @@ namespace Mapsui.Samples.Forms.Shared
                         if (e.NumOfTaps == 2)
                         {
                             // Double click on callout moves pin
-                            var p = e.Callout.Pin;
+                            var p = e.Callout.Symbol;
                             p.Position = new Position(p.Position.Latitude + 0.01, p.Position.Longitude);
                             e.Handled = true;
                             return;

@@ -19,7 +19,7 @@ namespace Mapsui.UI.Objects
     /// </remarks>
     public class MyLocationLayer : MemoryLayer
     {
-        MapView mapView;
+        IMapView mapView;
         Feature feature;
 
         private static int bitmapMovingId = -1;
@@ -89,7 +89,7 @@ namespace Mapsui.UI.Objects
         /// </summary>
         /// <param name="view">MapView, to which this layer belongs</param>
         /// <param name="position">Position, where to start</param>
-        public MyLocationLayer(MapView view, Position position) : this(view)
+        public MyLocationLayer(IMapView view, Position position) : this(view)
         {
             myLocation = position;
         }
@@ -98,7 +98,7 @@ namespace Mapsui.UI.Objects
         /// Initializes a new instance of the <see cref="T:Mapsui.UI.Objects.MyLocationLayer"/> class.
         /// </summary>
         /// <param name="view">MapView, to which this layer belongs</param>
-        public MyLocationLayer(MapView view)
+        public MyLocationLayer(IMapView view)
         {
             if (view == null)
                 throw new ArgumentNullException("MapView shouldn't be null");
@@ -175,21 +175,21 @@ namespace Mapsui.UI.Objects
                         var modified = InternalUpdateMyLocation(new Position(animationMyLocationStart.Latitude + deltaLat, animationMyLocationStart.Longitude + deltaLon));
                     // Update viewport
                     if (modified && mapView.MyLocationFollow && mapView.MyLocationEnabled)
-                            mapView._mapControl.Navigator.CenterOn(MyLocation.ToMapsui());
+                            mapView.MapControl.Navigator.CenterOn(MyLocation.ToMapsui());
                     // Refresh map
                     if (mapView.MyLocationEnabled && modified)
                             mapView.Refresh();
                     }, 0.0, 1.0);
 
                     // At the end, update viewport
-                    animation.Commit(mapView, animationMyLocationName, 100, 3000, finished: (s, v) => mapView.Map.RefreshData(mapView._mapControl.Viewport.Extent, mapView._mapControl.Viewport.Resolution, ChangeType.Discrete));
+                    animation.Commit(mapView, animationMyLocationName, 100, 3000, finished: (s, v) => mapView.Map.RefreshData(mapView.MapControl.Viewport.Extent, mapView.MapControl.Viewport.Resolution, ChangeType.Discrete));
                 }
                 else
                 {
                     var modified = InternalUpdateMyLocation(newLocation);
                     // Update viewport
                     if (modified && mapView.MyLocationFollow && mapView.MyLocationEnabled)
-                        mapView._mapControl.Navigator.CenterOn(MyLocation.ToMapsui());
+                        mapView.MapControl.Navigator.CenterOn(MyLocation.ToMapsui());
                     // Refresh map
                     if (mapView.MyLocationEnabled && modified)
                         mapView.Refresh();

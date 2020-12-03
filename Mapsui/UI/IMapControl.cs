@@ -14,6 +14,8 @@ namespace Mapsui.UI
 
         event EventHandler ViewportInitialized;
 
+        IReadOnlyViewport Viewport { get; }
+
         void RefreshGraphics();
 
         void RefreshData(ChangeType changeType = ChangeType.Discrete);

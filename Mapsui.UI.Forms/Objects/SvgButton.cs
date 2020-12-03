@@ -7,7 +7,7 @@ using Xamarin.Forms;
 
 namespace Mapsui.UI.Forms
 {
-    class SvgButton : SKCanvasView
+    public class SvgButton : SKCanvasView
     {
         private Command _command;
         private SKPicture _picture;

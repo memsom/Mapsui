@@ -15,7 +15,7 @@
                     ItemSelected="OnSelection"/>
                 <Label x:Name="featureInfo"></Label>
             </StackLayout>
-            <mapsui:MapView x:Name="mapView"
+            <mapsui:MapViewEx x:Name="mapView"
     		    VerticalOptions="FillAndExpand"
                 HorizontalOptions="FillAndExpand"
 		        BackgroundColor="Gray" 
